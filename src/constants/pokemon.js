@@ -4,7 +4,7 @@
 const LIGHT_TEXT = '#FFFFFF';
 const DARK_TEXT = '#1F2937';
 
-// Paleta propia del equipo: un color por tipo. En los colores claros el texto
+// Paleta propia: un color por tipo. En los colores claros el texto
 // va oscuro para que se pueda leer (contraste).
 export const TYPE_STYLES = {
   normal: { label: 'Normal', color: '#75786F', textColor: LIGHT_TEXT },
