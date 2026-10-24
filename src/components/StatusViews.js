@@ -1,8 +1,4 @@
-// Vistas de estado de la interfaz. Toda petición a la API muestra en qué estado está:
-//   Cargando -> LoadingState  (indicador + texto)
-//   Error    -> ErrorState    (mensaje en español + botón "Reintentar")
-// El estado "Éxito" es la lista o la ficha.
-
+// Vistas de estado de la interfaz.
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { colors, spacing } from '../theme';
@@ -24,6 +20,18 @@ export function ErrorState({ message, onRetry, compact = false }) {
       {!compact && <Text style={styles.title}>Algo salió mal</Text>}
       <Text style={[styles.message, styles.errorMessage]}>{message}</Text>
       <PrimaryButton title="Reintentar" onPress={onRetry} variant={compact ? 'outline' : 'solid'} />
+    </View>
+  );
+}
+
+// Un estado vacío no es un error: la petición funcionó, pero no hay nada que mostrar.
+// Por eso ofrece un siguiente paso (actionLabel) en lugar de "Reintentar".
+export function EmptyState({ title, message, actionLabel, onAction }) {
+  return (
+    <View style={styles.fullScreen}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.message}>{message}</Text>
+      {actionLabel && <PrimaryButton title={actionLabel} onPress={onAction} variant="outline" />}
     </View>
   );
 }
